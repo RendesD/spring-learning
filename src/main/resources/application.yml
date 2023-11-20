@@ -1,0 +1,18 @@
+server:
+  port: 8081
+
+spring:
+  data:
+    jpa:
+      repositories:
+        enabled: true
+  jpa:
+    show-sql: true
+    database: mysql
+  datasource:
+    url: jdbc:mysql://localhost:3306/
+    driver: com.mysql.jdbc.Driver
+    username: root
+    password: secretpass
+
+
