@@ -1,8 +1,23 @@
 version: '3.1'
 
 services:
+  main_service:
+    build: .
+    restart: always
+    ports:
+      - 8080:8080
+    networks:
+      - mainservice-net
+    environment:
+      - spring.datasource.url=jdbc:mysql://mysqldb:3306/main-service
+    depends_on:
+      - mysqldb
 
-  db:
+    volumes:
+      - .m2:/root/.m2
+
+
+  mysqldb:
     image: mysql
     command: --default-authentication-plugin=mysql_native_password
     restart: always
@@ -10,3 +25,8 @@ services:
       MYSQL_ROOT_PASSWORD: secretpass
     ports:
       - "3306:3306"
+    networks:
+      - mainservice-net
+
+networks:
+  mainservice-net:
