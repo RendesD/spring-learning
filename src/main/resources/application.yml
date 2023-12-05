@@ -1,7 +1,8 @@
-server:
-  port: 8080
-
 spring:
+  application:
+    name: main-service
+  mvc:
+    log-request-details: true
   data:
     jpa:
       repositories:
@@ -14,5 +15,16 @@ spring:
     driver: com.mysql.jdbc.Driver
     username: root
     password: secretpass
+server:
+  port: 8081
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
+  instance:
+    preferIpAddress: true
+logging:
+  level:
+    root: INFO
 
 
